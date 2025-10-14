@@ -1,1 +1,44 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Complaint Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h1 { text-align: center; }
+    .section { margin-bottom: 20px; }
+    .section h2 { background: #f2f2f2; padding: 8px; }
+    .field { margin: 4px 0; }
+    .label { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Cyber Complaint Report</h1>
+  <div class="section">
+    <h2>Complaint ID: {{ complaint.complaint_id }}</h2>
+    <div class="field"><span class="label">Date:</span> {{ complaint.created_at.strftime("%Y-%m-%d %H:%M:%S") }}</div>
+  </div>
+  <div class="section">
+    <h2>Personal Information</h2>
+    <div class="field"><span class="label">Name:</span> {{ complaint.name }}</div>
+    <div class="field"><span class="label">Phone:</span> {{ complaint.phone_number }}</div>
+    <div class="field"><span class="label">Address:</span> {{ complaint.address }}</div>
+  </div>
+  <div class="section">
+    <h2>Evidence & Description</h2>
+    <div class="field"><span class="label">Description:</span> {{ complaint.description }}</div>
+    <div class="field"><span class="label">Transactions:</span> {{ complaint.transaction_count }}</div>
+    <div class="field"><span class="label">Sender TXN ID:</span> {{ complaint.sender_txn_id }}</div>
+    <div class="field"><span class="label">Receiver TXN ID:</span> {{ complaint.receiver_txn_id }}</div>
+    <div class="field"><span class="label">IFSC Code:</span> {{ complaint.ifsc }}</div>
+    <div class="field"><span class="label">Timestamp:</span> {{ complaint.timestamp_evidence }}</div>
+  </div>
+  {% if complaint.suspect_name %}
+  <div class="section">
+    <h2>Suspect Information</h2>
+    <div class="field"><span class="label">Name:</span> {{ complaint.suspect_name }}</div>
+    <div class="field"><span class="label">Details:</span> {{ complaint.suspect_details }}</div>
+  </div>
+  {% endif %}
+</body>
+</html>
